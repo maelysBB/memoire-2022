@@ -34,7 +34,16 @@ def doc_generator():
                         "library": [],
                         "playground":[],
                         "recycling": [],
-                        "shop_craft_office":[]
+                        "shop_craft_office":[],
+                        "allotments":[],
+                        "bicycle_parking":[],
+                        "education":[],
+                        "fire_hydrant":[],
+                        "historic":[],
+                        "hosting":[],
+                        "internet_acess":[],
+                        "parking":[],
+                        "sports":[]
               }}             
 
 helpers.bulk(es, doc_generator())

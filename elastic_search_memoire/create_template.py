@@ -149,7 +149,99 @@ data = {"index_patterns": ["*area*"],
          "name_keyword":
          {"type":"keyword"}
       }
-    }      
+    },
+"allotments": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    }, 
+"bicycle_parking": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"}
+      }
+    },
+"education": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    },
+"fire_hydrant": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"}
+      }
+    },
+"historic": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    },
+"hosting": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    },
+"internet_acess": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"}
+      }
+    },
+"parking": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"}
+      }
+    }, 
+"sports": {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    },    
 }
 }
 },
