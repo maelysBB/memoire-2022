@@ -20,3 +20,12 @@ import update_docs_library
 import update_docs_playground
 import update_docs_recycling
 import update_docs_shop_craft_office
+import update_docs_allotments
+import update_docs_bicycle_parking
+import update_docs_education
+import update_docs_fire_hydrant
+import update_docs_historic
+import update_docs_hosting
+import update_docs_internet_acess
+import update_docs_parking
+import update_docs_sports
