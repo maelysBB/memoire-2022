@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-category = {                                # list all possible category
-    "healthcare" : 
-=======
 category = {
         "healthcare" : 
->>>>>>> eadd3aa9018dd7709dc45ab68e65348d6e48ae3f
         {"name": "Etablissement de santé",                                    # list all possible categories
          "category" : ["Clinique", "Pharmacie", "Hopitaux"]
          },

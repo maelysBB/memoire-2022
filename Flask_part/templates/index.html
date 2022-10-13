@@ -35,7 +35,7 @@
                 </div>
               {% endfor %}
               <div> 
-                <span>Vous souvenez-vous du nom d'un des endroits visités? </span>
+                <span>Un nom vous revient ? </span>
                 <input type="text" class="form-control" aria-label="Default" name = "name_{{key}}" aria-describedby="inputGroup-sizing-default">
               </div>
             </div>  
@@ -122,8 +122,8 @@
   window.myLayer = L.geoJSON().addTo(map);
 
   var data =  JSON.stringify({"checkboxes": array_checkboxes, "inputs": array_inputs})
-    // const process_demand_url = ("{{ url_for('update_map', test = 'data') }}").replace("data", data)
   const process_demand = "{{ url_for('update_map_api') }}"
+  console.log(data)
     
     
     fetch(process_demand,  {method: "POST", body:  data,  headers: {
@@ -132,9 +132,12 @@
   })
     .then(response => response.json())
     .then(data => {
-        data = JSON.parse(data)
-        console.log(typeof(data))
-        window.myLayer.addData(data);       
+         try { 
+          data = JSON.parse(data);
+          window.myLayer.addData(data);   
+        } catch (e) { alert("Aucun résultat trouvé"); }
+  
+        // window.myLayer.addData(data);       
     })
 
   }

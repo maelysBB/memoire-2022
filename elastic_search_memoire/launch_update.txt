@@ -1,0 +1,15 @@
+python documents_update/update_docs_aed.py 
+python documents_update/update_docs_allotments.py
+python documents_update/update_docs_bank.py 
+python documents_update/update_docs_bicycle_parking.py 
+python documents_update/update_docs_allotments.py
+documents_update/update_docs_cemetery.py 
+python documents_update/update_docs_charging_stations.py
+python documents_update/update_docs_cinema.py 
+python documents_update/update_docs_drinking_water.py 
+python documents_update/update_docs_education.py
+python documents_update/update_docs_carpool.py 
+python documents_update/update_docs_cycleway.py 
+python documents_update/update_docs_cycleway.py 
+
+python documents_update/update_docs_fire_hydrant.py documents_update/healthcare.py

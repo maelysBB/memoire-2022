@@ -81,7 +81,7 @@ def test(result, free_input):
                    "number": len(compare(result, "shop_craft_office")),
                    "category" : compare(result, "shop_craft_office")}
                     }
-  data = {"size": 10}
+  data = {"size": 50}
   data["query"] = {"bool": {"must": []}}
   
 
