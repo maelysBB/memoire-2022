@@ -6,8 +6,9 @@ import pandas as pd
 df = pd.read_csv("./csv_files/areas.csv")
 
 
-es = Elasticsearch("http://localhost:9200", timeout=80)
-# print(es.info().body)
+es = Elasticsearch("http://localhost:9200")
+print(es.info().body)
+
 
 def doc_generator():
   df_iter = df.iterrows()
@@ -23,7 +24,17 @@ def doc_generator():
                         "polygon": line["radius"], 
                         "healthcare": [], 
                         "charging_station": [],
-                        "restaurant":[]
+                        "drinking_water":[],
+                        "aed": [],
+                        "bank":[],
+                        "carpool": [],
+                        "cemetery":[],
+                        "cinema": [],
+                        "cycleway":[],
+                        "library": [],
+                        "playground":[],
+                        "recycling": [],
+                        "shop_craft_office":[]
               }}             
 
 helpers.bulk(es, doc_generator())
