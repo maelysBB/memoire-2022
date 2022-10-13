@@ -15,9 +15,10 @@ h1 {
     margin-bottom: 8px
 }
 
-#map {
+#folium_map {
     width: 100%;
-    min-height:55em
+    min-height:45em;
+    /* background: #565656; */
 }
 
 li {
@@ -25,7 +26,7 @@ li {
     font-size: 1em
 }
 
-.map span {
+.folium_map span {
     color: white
 }
 
@@ -36,11 +37,14 @@ li {
     margin-top:5px;
     position: absolute;
     bottom: 8px;
-    left: 340px;
-    /* padding: 5px */
-    
+    left: 340px;    
 }
 
+#map {
+	width: 100%;
+    min-height:58em;
+    position: relative
+}
 
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -59,3 +63,11 @@ li {
     /* background-color: #f1f1f1;
     height: 300px;*/
   }
+
+
+.filter {
+    position: absolute;
+    bottom: 20px;
+    z-index: 1000;
+    margin-left: 10px
+}

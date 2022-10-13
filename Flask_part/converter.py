@@ -35,7 +35,7 @@ def test(result, free_input):
                       len(compare(result, "charging_station"))
                       }
                     }
-  data = {"size": 100}
+  data = {"size": 10}
   data["query"] = {"bool": {"must": []}}
   
 
@@ -72,5 +72,6 @@ def test(result, free_input):
     geo_serie = gpd.GeoSeries(retrieve_polygons) #transform the list of polygons to a geoSerie
     geo_serie.crs = "epsg:4326"
     return geo_serie
+    # return response
     # return data
 

@@ -2,34 +2,32 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 
-<div id = "iframe_"> 
-  {% if result or free_field %}
-    <iframe src = {{ url_for('update_map')}} id = "map"></iframe>
-  {% else %}
-    <iframe src = {{ url_for('map') }} id = "map"></iframe>
-  {% endif %}
-</div>
+<div id="map"></div>
+
+<!-- <div id = "iframe_"> 
+    <iframe src = {{ url_for('map') }} id = "folium_map" onload="myFunction()"></iframe>
+</div> -->
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
-    <h4> Quels éléments recherchez vous dans cette zone ?</h4>
+    <h5> Que recherchez vous dans la zone?</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
   <div class="offcanvas-body">
-    <form action="process_demand" method="POST">
+    <form id = "myform"  onsubmit="return false">
       {% for key,value in list_of_choices.items() %}
         <div class = "section_category" id = "{{key}}">
             {% if value.category %}
               <div class = "section_header">
                 <input class="form-check-input" type="checkbox" onClick="toggle(this, '{{key}}')" /> <label></label><strong>{{value.name}}</strong> (tous types) 
-                <button type="button" class="collapsible"><img srcset="https://img.icons8.com/external-others-inmotus-design/134/external-Down-virtual-keyboard-others-inmotus-design-5.png 2x" alt="Down" loading="lazy" onload="this.setAttribute('lazy', 'loaded')" onerror="this.setAttribute('lazy', 'error')" style="width: 18px; height: 18px;" lazy="loaded">       </button> 
+                <button id ="but-{{loop.index0}}" type="button" class="collapsible" onClick = "collapse(this)"><img srcset="https://img.icons8.com/external-others-inmotus-design/134/external-Down-virtual-keyboard-others-inmotus-design-5.png 2x" alt="Down" loading="lazy" onload="this.setAttribute('lazy', 'loaded')" onerror="this.setAttribute('lazy', 'error')" style="width: 18px; height: 18px;" lazy="loaded">       </button> 
               </div>
-              <div class = "content">
+              <div class = "content {{loop.index0}}">
               {% for element in value.category %}
                 <div class = "section_checkboxes">
                   <label class="form-check">
-                    <input class="form-check-input {{key}}" type="checkbox" name = "user_demand" value="{{key}}{{loop.index0}}">
+                    <input class="form-check-input real {{key}}" type="checkbox" name = "user_demand" value="{{key}}{{loop.index0}}">
                     <span class="form-check-label">
                       {{element}}
                     </span>
@@ -39,24 +37,24 @@
               <div> 
                 <span>Vous souvenez-vous du nom d'un des endroits visités? </span>
                 <input type="text" class="form-control" aria-label="Default" name = "name_{{key}}" aria-describedby="inputGroup-sizing-default">
-                <!-- <input type="text" class="form-control" aria-label="Default" name = "name_{{key}}_1" aria-describedby="inputGroup-sizing-default"> -->
               </div>
             </div>  
             {%else%}
             <div class = "section_header">
-              <input class="form-check-input" type="checkbox" name = "user_demand" value="{{key}}">
+              <input class="form-check-input real" type="checkbox" name = "user_demand" value="{{key}}">
               <strong>{{value.name}}</strong>
             </div>    
 
             {% endif %}
         </div>    
       {% endfor %}
-      <button type="submit" class="btn btn-primary btn-block btn-large">Trouvez des lieux</button>  
+      <button type="submit" class="btn btn-primary btn-block btn-large" onClick = getValues()>Trouvez des lieux</button>  
+
     </form>
   </div>
 </div>
 <div>
-  <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+  <a class="btn btn-dark filter" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
     Filtrer
   </a>
 </div>
@@ -72,7 +70,7 @@
   </div>
 </div> -->
 
-<script>
+<!-- <script>
   var coll = document.getElementsByClassName("collapsible");
   var i;
   
@@ -89,24 +87,6 @@
       }}
     });
   }
-</script>
-
-<!-- <script>
-  var coll = document.getElementsByClassName("collapsible");
-  var i;
-  
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = document.getElementsByClassName("content");
-      console.log(content)
-      if (content.style.display === "block") {
-        content.style.display = "none";
-      } else {
-        content.style.display = "block";
-      }
-    });
-  }
 </script> -->
 
 <script language="JavaScript">
@@ -115,8 +95,69 @@
   for(var i=0, n=checkboxes.length;i<n;i++) {
     checkboxes[i].checked = source.checked;
   }
-  }
+} 
+
 </script>
+
+<script language="JavaScript">
+  function getValues() {
+    var array_checkboxes = []
+    var array_inputs = {}
+
+    var markedCheckbox = document.querySelectorAll('input[type="checkbox"]:checked.real');
+
+    for (var checkbox of markedCheckbox) {  
+      array_checkboxes.push(checkbox.value);  
+    }
+    
+    var textInputs = document.querySelectorAll('input[type="text"]');  
+    for (var text of textInputs) {  
+      array_inputs[text.name] = text.value;  
+  }
+
+
+  if (window.myLayer)
+    { window.myLayer.clearLayers()}
+
+  window.myLayer = L.geoJSON().addTo(map);
+
+  var data =  JSON.stringify({"checkboxes": array_checkboxes, "inputs": array_inputs})
+    // const process_demand_url = ("{{ url_for('update_map', test = 'data') }}").replace("data", data)
+  const process_demand = "{{ url_for('update_map_api') }}"
+    
+    
+    fetch(process_demand,  {method: "POST", body:  data,  headers: {
+    'Content-Type': 'application/json'
+  } 
+  })
+    .then(response => response.json())
+    .then(data => {
+        data = JSON.parse(data)
+        console.log(typeof(data))
+        window.myLayer.addData(data);       
+    })
+
+  }
+
+
   
+</script>
+<!-- <script>
+    function myFunction() {
+      var e = document.getElementById("map").contentWindow.document.getElementsByTagName("span")[0];
+        e.innerHTML = "fuck"
+        e.style.color = "white";
+    }
+</script> -->
+
+
+<script type="text/javascript">
+  var map = L.map('map').setView([48.9, 2.3360300], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+</script>
 
 {% endblock %}
+
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
