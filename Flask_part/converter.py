@@ -32,55 +32,14 @@ def compare(list_of_choices, word): #list of choices lists all the choice the us
   
 
 def test(result, free_input):
-  user_demand = {"healthcare":
-                  {
-                   "number": len(compare(result, "healthcare")),
-                   "category" : compare(result, "healthcare")},
-                  "charging_station": 
-                    {"number": 
-                      len(compare(result, "charging_station"))
-                      },
-                  "aed":
-                  {
-                   "number": len(compare(result, "aed")),
-                   "category" : compare(result, "aed")},
-                  "bank":
-                  {
-                   "number": len(compare(result, "bank")),
-                   "category" : compare(result, "bank")},
-                  "carpool":
-                  {
-                   "number": len(compare(result, "carpool")),
-                   "category" : compare(result, "carpool")},
-                  "cemetery": 
-                    {"number": 
-                      len(compare(result, "cemetery"))
-                      },
-                  "cinema":
-                  {
-                   "number": len(compare(result, "cinema")),
-                   "category" : compare(result, "cinema")},
-                  "cycleway": 
-                    {"number": 
-                      len(compare(result, "cycleway"))
-                      },
-                  "library":
-                  {
-                   "number": len(compare(result, "library")),
-                   "category" : compare(result, "library")},
-                  "playground": 
-                    {"number": 
-                      len(compare(result, "playground"))
-                      },
-                  "recycling": 
-                    {"number": 
-                      len(compare(result, "recycling"))
-                      },
-                  "shop_craft_office":
-                  {
-                   "number": len(compare(result, "shop_craft_office")),
-                   "category" : compare(result, "shop_craft_office")}
-                    }
+  user_demand ={}
+  for key, value in category.items():
+    if 'category' in value:
+      user_demand[key] = {"number": len(compare(result, key)),
+                   "category" : compare(result, key)}
+    else : 
+      user_demand[key] = {"number": len(compare(result, key))}
+      
   data = {"size": 50}
   data["query"] = {"bool": {"must": []}}
   
