@@ -12,7 +12,7 @@ category = {
          },
         "bank" :
             {"name": "Banque",
-            "category" : ["Banque Postale", "BNP Paribas", "BRED/Banque populaire", "Caisse d"Epargne", "CIC", "Crédit Agricole", "Crédit Mutuel", "HSBC", "LCL", "Société Générale"] 
+            "category" : ["Banque Postale", "BNP Paribas", "BRED/Banque populaire", "Caisse d'Epargne", "CIC", "Crédit Agricole", "Crédit Mutuel", "HSBC", "LCL", "Société Générale"] 
             },
         "carpool" : 
         {"name": "Espace de covoiturage",
@@ -67,7 +67,7 @@ category = {
          "category" : ["hotel", "guest_house", "outdoor", "Autre"]
          },
         "internet_access" :
-        {"name": "Point d"accès internet",
+        {"name": "Point d'accès internet",
          "category" : ["wlan", "terminal", "Autre", "wired", "service_provider"] 
          },
         "parking" :
