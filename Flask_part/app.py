@@ -45,23 +45,23 @@ def map(result = None):
     folium_map = folium.Map(location=start_coords, zoom_start=9)
     return folium_map._repr_html_()
         
-@app.route('/update_map')
-# @app.route('/update_map/<query>')
-def update_map():
-    data =  request.args.values()
-    start_coords = (48.7, 2.3360300)
-    folium_map = folium.Map(location=start_coords, zoom_start =10)
-    data = [eval(d) for d in data][0]
-    checkboxes = data["checkboxes"]
-    inputs =  data["inputs"]    
-    free_field = {}
-    if len(inputs) > 0 :
-        for key, value in inputs.items():
-            free_field[key.replace("name_","")] = value
-    result = test(checkboxes, free_field)
-    folium.GeoJson(result).add_to(folium_map)
-    return folium_map._repr_html_()
-    # return jsonify(result)
+# @app.route('/update_map')
+# # @app.route('/update_map/<query>')
+# def update_map():
+#     data =  request.args.values()
+#     start_coords = (48.7, 2.3360300)
+#     folium_map = folium.Map(location=start_coords, zoom_start =10)
+#     data = [eval(d) for d in data][0]
+#     checkboxes = data["checkboxes"]
+#     inputs =  data["inputs"]    
+#     free_field = {}
+#     if len(inputs) > 0 :
+#         for key, value in inputs.items():
+#             free_field[key.replace("name_","")] = value
+#     result = test(checkboxes, free_field)
+#     folium.GeoJson(result).add_to(folium_map)
+#     return folium_map._repr_html_()
+#     # return jsonify(result)
 
 
 @app.route('/update_map_api', methods = ["POST"])
@@ -78,6 +78,8 @@ def update_map_api():
         for key, value in inputs.items():
             free_field[key.replace("name_","")] = value
     result = test(checkboxes, free_field).to_json()
+    if len(checkboxes)==0:
+        return folium_map._repr_html_()
     return jsonify(result)
 
     

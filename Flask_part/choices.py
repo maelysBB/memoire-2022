@@ -1,7 +1,8 @@
 category = {
         "healthcare" : 
         {"name": "Etablissement de santé",                                    # list all possible categories
-         "category" : ["Clinique", "Pharmacie", "Hopitaux"]
+         "category" : ["Clinique", "Pharmacie", "Hopitaux"],
+         "title":"oui"
          },
         "charging_station" :
             {"name": "Bornes de chargement", 
@@ -20,29 +21,35 @@ category = {
          },
         "cemetery" :
             {"name": "Cimetière", 
+            "title":"oui"
             },
         "cinema" : 
         {"name": "Cinéma",
-         "category" : ["MK2", "Pathé Gaumont", "UGC"]
+         "category" : ["MK2", "Pathé Gaumont", "UGC"],
+         "title":"oui"
          },
         "cycleway" :
             {"name": "Piste cyclable",}, 
         "library" : 
         {"name": "Bibliothèque",
-         "category" : ["Bibliothèque", "Médiathèque", "Dépôt à livres"]
+         "category" : ["Bibliothèque", "Médiathèque", "Dépôt à livres"],
+         "title":"oui"
          },
         "playground" :
-        {"name": "Terrain de jeu",}, 
+        {"name": "Terrain de jeu",
+        "title":"oui"}, 
         "recycling" :
         {"name": "Recyclage",}, 
         "shop_craft_office" : 
         {"name": "Commerce",
          "category" : ["Achat et entretien voitures", "Agence immobilière", "Boucher", "Boulangerie/Pâtisserie", 
-         "Café", "Coiffeur", "Opticien", "Supermarché/Epicerie", "Vêtements/Chaussures"]
+         "Café", "Coiffeur", "Opticien", "Supermarché/Epicerie", "Vêtements/Chaussures"],
+         "title":"oui"
          },
         "allotments" :
         {"name": "Jardins familiaux",
-         "category" : ["garden", "Autre", "potager", "association"]
+         "category" : ["garden", "Autre", "potager", "association"], 
+         "title":"oui"
          },
         "bicycle_parking" :
         {"name": "Parking à vélos",
@@ -50,7 +57,8 @@ category = {
          },
         "education" : 
         {"name": "Education",
-         "category" : ["kindergarten", "school", "university", "college"]
+         "category" : ["kindergarten", "school", "university", "college"],
+         "title":"oui"
          },
         "fire_hydrant" :
         {"name": "Equipement de lutte contre incendie",
@@ -60,7 +68,8 @@ category = {
         {"name": "Historique",
          "category" : ["memorial", "nature", "man-made_waterbody", "place_of_worship",
          "monument", "tomb", "castle", "ruins", "Autre", "archaeological_site", "building", 
-         "industrial ", "military", "vehicle", "scientific"]
+         "industrial ", "military", "vehicle", "scientific"],
+         "title":"oui"
          },
         "hosting" :
         {"name": "Hébergement touristique",
@@ -78,7 +87,8 @@ category = {
         {"name": "Sportif",
          "category" : ["sports_centre", "pitch", "horse_riding", "swimming_pool",
          "golf_course", "fitness_station", "recreation_ground", "track",
-         "stadium", "grass", "Autre"]
+         "stadium", "grass", "Autre"],
+         "title":"oui"
          }
             }
 

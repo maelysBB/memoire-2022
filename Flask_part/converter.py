@@ -48,21 +48,20 @@ def test(result, free_input):
     else : 
       user_demand[key] = {"number": len(compare(result, key))}
       
-  data = {"size": 50}
+  data = {"size": 5000}
   data["query"] = {"bool": {"must": []}}
-  
 
   for key, value in user_demand.items() :
-    if total_number[key] == value["number"] : ##si l'utilsateur a choisi tous les lieux du type, ou qu'il n'y a qu'une seule  catégorie on fait une requête existe
+    if total_number[key] == value["number"] : ##si l'utilisateur a choisi tous les lieux du type, ou qu'il n'y a qu'une seule  catégorie on fait une requête existe
         to_append = {"nested": {"path": key ,"query": {"exists": {"field": key}}}} 
         data["query"]["bool"]["must"].append(to_append)
         
     else:
       if total_number[key] > 1 :    
-        for cat in value["category"]: ##si l'utilsateur a choisi certaines catégories, on fait une query avec must, pour que cela réponde aux différentes catégorie
+        for cat in value["category"]: ##si l'utilisateur a choisi certaines catégories, on fait une query avec must, pour que cela réponde aux différentes catégorie
             to_append = {"nested": {"path": key,"query": {"bool": {"must": [{"match": { "{}.category".format(key): cat  }}] } }}}
             data["query"]["bool"]["must"].append(to_append)
-            
+  
   for key, value in free_input.items():
     if value != "":
     ##Permet de rechercher un champ libre saisi par le user
@@ -79,12 +78,12 @@ def test(result, free_input):
                           }
       data["query"]["bool"]["must"].append(to_append)
           
-    response  = requests.get(url, json = data)
-    polygon = response.json()["hits"]["hits"]
-    retrieve_polygons = [shapely.wkt.loads(element["_source"]["polygon"]) for element in polygon] #retrieve only the polygon coordinates of each doc. We apply wkt loads to convert to proper format
-    geo_serie = gpd.GeoSeries(retrieve_polygons) #transform the list of polygons to a geoSerie
-    geo_serie.crs = "epsg:4326"
-    return geo_serie
-    # return response
-    # return data
+  response  = requests.get(url, json = data)
+  polygon = response.json()["hits"]["hits"]
+  retrieve_polygons = [shapely.wkt.loads(element["_source"]["polygon"]) for element in polygon] #retrieve only the polygon coordinates of each doc. We apply wkt loads to convert to proper format
+  geo_serie = gpd.GeoSeries(retrieve_polygons) #transform the list of polygons to a geoSerie
+  geo_serie.crs = "epsg:4326"
+  return geo_serie
+  # return response
+  # return data
 
