@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+<div id="set_map"></div>
+
+
+<!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">A vous de jouer !</button> -->
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">A vous de jouer !</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <p>Sélectionnez le nombre de lieux de votre choix.</p>
+    <form action="{{url_for('predict_app2')}}" method="post">
+      Banque
+      <select name="comp_select" class="Input">
+            {% for o in data %}
+            <option value="{{ o.banque }}">{{ o.banque }}</option>
+            {% endfor %}
+          </select><br><br>
+      Santé
+      <select name="comp_select1" class="Input">
+            {% for o in data1 %}
+            <option value="{{ o.santé }}">{{ o.santé }}</option>
+            {% endfor %}
+          </select><br><br>    
+      Cimetière    
+      <select name="comp_select2" class="Input">
+            {% for o in data2 %}
+            <option value="{{ o.cimetière }}">{{ o.cimetière }}</option>
+            {% endfor %}
+          </select><br><br>
+      Cinéma
+      <select name="comp_select3" class="Input">
+            {% for o in data3 %}
+            <option value="{{ o.cinéma }}">{{ o.cinéma }}</option>
+            {% endfor %}
+          </select><br><br>
+      Jardin
+      <select name="comp_select4" class="Input">
+            {% for o in data4 %}
+            <option value="{{ o.jardin }}">{{ o.jardin }}</option>
+            {% endfor %}
+          </select><br><br>
+      <button type="submit" class="pred-btn"> Trouvez mon lieu idéal ! </button>
+    </form>  
+    </div>
+      <br>
+      <br>
+  </div>
+</div>
+<div>
+  <a class="btn btn-dark filter" data-bs-toggle="offcanvas" href="#offcanvasWithOptions" role="button" aria-controls="offcanvasWithOptions">
+    Filtrer
+  </a>
+  <a class="btn btn-dark filter" id="menu_right" href="/" role="button">
+    Retour au menu principal
+</a>
+</div>
+
+
+<script type="text/javascript">
+  var map = L.map('set_map').setView([48.9, 2.3360300], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+ 
+  </script>
+
+{% endblock %}
+
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+

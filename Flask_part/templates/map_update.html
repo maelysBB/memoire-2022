@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f042f8163bb3c7d14119e5cba5bd8303 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_f042f8163bb3c7d14119e5cba5bd8303" ></div>
+        
+</body>
+<script>    
+    
+            var map_f042f8163bb3c7d14119e5cba5bd8303 = L.map(
+                "map_f042f8163bb3c7d14119e5cba5bd8303",
+                {
+                    center: [48.866667, 2.3333],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_21170cb88c2cd4127ad773c9dea48a75 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            var circle_b45a3ece57eb586962b43beac56c0bf3 = L.circle(
+                [48.85488332373416, 3.349793678136856],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_b45a3ece57eb586962b43beac56c0bf3.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_92c3145f0cdd914850bdebd4729ab377 = L.circle(
+                [48.756068642657446, 2.70210285477252],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_92c3145f0cdd914850bdebd4729ab377.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_2998718a8edeb1f8971aeaeb4739f92c = L.circle(
+                [48.67522026733212, 2.702102854772507],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_2998718a8edeb1f8971aeaeb4739f92c.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_6a86476733a599a5e13d5d5240f8b94f = L.circle(
+                [48.66623711451811, 2.7021028547725323],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_6a86476733a599a5e13d5d5240f8b94f.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_fdfdd2b805f9f0257b2662260ec621e1 = L.circle(
+                [48.53148982230624, 2.70210285477252],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_fdfdd2b805f9f0257b2662260ec621e1.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_fafe0bb263aa3e8cbc92ae033137db75 = L.circle(
+                [48.52250666949195, 2.7021028547725323],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_fafe0bb263aa3e8cbc92ae033137db75.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_bf7bb3386886cb9bc5cb17b35c552440 = L.circle(
+                [48.31589415476008, 2.70210285477252],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_bf7bb3386886cb9bc5cb17b35c552440.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_67d66c1d5d437e636e126840669e8017 = L.circle(
+                [48.91776539330592, 2.7110960067188503],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_67d66c1d5d437e636e126840669e8017.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_c6eddbdd926015c0b7051639c8f8d6ea = L.circle(
+                [48.89979908767873, 2.711096006718837],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_c6eddbdd926015c0b7051639c8f8d6ea.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var circle_ca0bd713ae0a99c3e251db8b36999a38 = L.circle(
+                [48.908782240401, 2.1176804424216904],
+                {"bubblingMouseEvents": true, "color": "#087FBF", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#087FBF", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 1000, "stroke": true, "weight": 3}
+            ).addTo(map_f042f8163bb3c7d14119e5cba5bd8303);
+        
+    
+            circle_ca0bd713ae0a99c3e251db8b36999a38.bindTooltip(
+                `<div>
+                     
+    Ce n'est pas un match parfait !<br>
+    Nombre de <b>banque(s)</b> : <b>0</b><br>
+    Nombre de <b>santé(s)</b> : <b>1</b><br>
+    Nombre de <b>cimetière(s)</b> : <b>0</b><br>
+    Nombre de <b>cinéma(s)</b> : <b>0</b><br>
+    Nombre de <b>jardin(s)</b> : <b>0</b><br>
+    
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>

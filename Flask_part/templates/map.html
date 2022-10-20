@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+{% include 'map_update.html' %}
+
+<a class="btn btn-dark filter" id="Go-back" href="/app2" role="button">
+        Réessayez
+    </a>
+
+<a class="btn btn-dark filter" id="menu" href="/" role="button">
+        Retour au menu principal
+    </a>
+{% endblock %}

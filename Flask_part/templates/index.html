@@ -2,10 +2,10 @@
 {% block title %}Home Page{% endblock %}
 {% block content %}
 
-<div id="map"></div>
+<div id="set_map"></div>
 
 <!-- <div id = "iframe_"> 
-    <iframe src = {{ url_for('map') }} id = "folium_map" onload="myFunction()"></iframe>
+    <iframe src = {{ url_for('set_map') }} id = "folium_map" onload="myFunction()"></iframe>
 </div> -->
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -58,18 +58,22 @@
   <a class="btn btn-dark filter" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
     Filtrer
   </a>
+
+  <a class="btn btn-dark filter" id="menu_right" href="/" role="button">
+    Retour au menu principal
+</a>
 </div>
 
 
 
-<div class="card" style="width: 18rem;">
+<!-- <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
-</div>
+</div> -->
 
 <!-- <script>
   var coll = document.getElementsByClassName("collapsible");
@@ -159,7 +163,7 @@
 
 
 <script type="text/javascript">
-  var map = L.map('map').setView([48.9, 2.3360300], 10);
+  var map = L.map('set_map').setView([48.9, 2.3360300], 10);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);

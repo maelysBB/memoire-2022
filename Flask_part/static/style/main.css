@@ -21,6 +21,11 @@ h1 {
     /* background: #565656; */
 }
 
+#map{
+    width: 100%;
+    min-height:45em;
+}
+
 li {
     color: black;
     font-size: 1em
@@ -40,12 +45,44 @@ li {
     left: 340px;    
 }
 
-#map {
+#set_map {
 	width: 100%;
     min-height:58em;
-    position: relative
+    position: relative;
 }
 
+#but{
+    position: relative;
+    top:10px
+}
+
+#carouselExampleDark{
+    width: 100%;
+    color:black;
+    min-height:58em;
+    margin: auto;
+    font-family: Georgia, serif;
+}
+.carousel-item img{
+    width: 100%;
+    color: black;
+    height: auto;
+    opacity: .4;
+}
+.carousel-control-next,
+.carousel-control-prev /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.carousel-caption {
+    position: absolute;
+    top:300px
+}
+
+.carousel-indicators
+{   position: absolute;
+    top:10px
+} 
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsible:hover {
@@ -71,3 +108,45 @@ li {
     z-index: 1000;
     margin-left: 10px
 }
+
+#Go-back
+{
+    position: absolute;
+    bottom: 20px;
+    z-index: 1000;
+    margin-left: 10px
+}
+
+#menu
+{
+    position: absolute;
+    bottom: 20px;
+    z-index: 1000;
+    margin-left: 120px
+}
+
+#menu_right
+{
+    position: absolute;
+    bottom: 20px;
+    z-index: 1000;
+    margin-left: 90px
+}
+
+.parent {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height:50em;
+
+
+
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+  }
