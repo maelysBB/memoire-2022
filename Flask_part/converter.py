@@ -17,13 +17,18 @@ item_translator = { "healthcare0" : "Hopital", "healthcare1": "Pharmacie", "heal
                     "recycling": "recycling", "shop_craft_office0": "Achat et entretien voitures", "shop_craft_office1": "Agence immobilière", "shop_craft_office2": "Boucher", 
                     "shop_craft_office3": "Boulanger/Pâtisserie", "shop_craft_office4": "Café", "shop_craft_office5": "Coiffeur", 
                     "shop_craft_office6": "Opticien", "shop_craft_office7": "Supermarché/Epicerie", "shop_craft_office8": "Vêtements/Chaussures",
-                    "allotments0": "garden", "allotments1": "Autre", "allotments2": "potager", "allotments3": "association", "bicycle_parking0": "prive", "bicycle_parking1": "libre acces", "bicycle_parking2": "Missing",
-                    "education0": "kindergarten", "education1": "school", "education2" : "university","education3": "college", "fire_hydrant0": "utiliser_que_par_les_pompiers", "fire_hydrant1": "utiliser_par_tous",
-                    "historic0":"memorial", "historic1": "nature", "historic2": "man-made_waterbody", "historic3": "place_of_worship", "historic4": "monument", "historic5": "tomb", "historic6": "castle","historic7": "ruins",
-                    "historic8": "Autre", "historic9": "archaeological_site", "historic10": "building", "historic11": "industrial ", "historic12": "military", "historic13": "vehicle", "historic14": "scientific",
-                    "hosting0": "hotel", "hosting1": "guest_house", "hosting2": "outdoor", "hosting3": "Autre", "internet_access0": "wlan", "internet_access1": "terminal", "internet_access2": "Autre",
-                    "internet_access3": "wired", "internet_access4": "service_provider", "parking0": "Missing", "parking1": "ouvrage", "parking2": "enclos_en_surface", "sports0": "sports_centre", "sports1": "pitch",
-                    "sports2": "horse_riding", "sports3": "swimming_pool", "sports4": "golf_course", "sports5": "fitness_station", "sports6": "recreation_ground", "sports7": "track", "sports8": "stadium", "sports9": "grass", "sports10": "Autre"
+                    "allotments0": "Jardin", "allotments1": "Potager", "allotments2": "Géré par une association", "allotments3": "Autre", "bicycle_parking0": "Privé", "bicycle_parking1": "Libre accès",
+                    "education0": "Crèche", "education1": "Ecole primaire ou secondaire", "education2" :  "Enseignement supérieur hors université", "education3":  "Université", "fire_hydrant0": "Utiliser par tous", "fire_hydrant1": "Utiliser que par les pompiers",
+                    "historic0": "Bâtiment", "historic1": "Château", "historic2": "Fontaine ou aménagement de cours d'eau", "historic3": "Industriel", "historic4": "Lieu de culte", "historic5": "Monument", "historic6": "Mémorial", "historic7": "Naturel",
+                    "historic8": "Patrimoine militaire", "historic9": "Patrimoine scientifique", "historic10": "Ruines", "historic11": "Site archéologique", "historic12": "Tombe", "historic13": "Transport", "historic14": "Autre",
+                    "hosting0": "Hôtel", "hosting1":  "Maison d'hôte", "hosting2": "Espaces extérieur", "hosting3": "Autre", "internet_access0": "Wifi", "internet_access1": "Connection par câble", "internet_access2": "Fournisseur de service",
+                    "internet_access3": "Autre", "parking0": "Ouvrage", "parking1": "Enclos en surface", "sports0": "Aire de jeux", "sports1":  "Centre d'équitation", "sports2": "Complexe sportif", "sports3": "Equipement de fitness ou de gymnastique",
+                    "sports4": "Piscine", "sports5": "Piste d'athlétisme", "sports6": "Stade", "sports7": "Terrain de golf", "sports8": "Terrain de sport", "sports9": "Autre", "drinking_water0": "Gratuit", "drinking_water1":  "Payant", "toilets0": "Gratuit", "toilets1":  "Payant",
+                    "taxi": "taxi", "fuel": "Station de carburant", "power_supports0": "Pylône électrique", "power_supports1": "Poteau électrique", 
+                    "restaurant0": "Bar ou Pub", "restaurant1": "Café", "restaurant2": "Foire alimentaire", "restaurant3": "Glacier", "restaurant4": "Restaurant", "restaurant5": "Restaurant fast food",
+                    "public_service0": "Mairie ou Hôtel de ville","public_service1":"Organisme gouvernemental", "public_service2": "Service de conseil", "public_service3": "Diplomatique", "public_service4": "Autre",
+                    "power_supports0": "Pylône électrique", "power_supports1": "Poteau électrique"
+                    
                     }
  
 total_number = {}

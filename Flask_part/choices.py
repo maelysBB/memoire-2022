@@ -48,48 +48,77 @@ category = {
          },
         "allotments" :
         {"name": "Jardins familiaux",
-         "category" : ["garden", "Autre", "potager", "association"], 
+         "category" : ["Autre", "Géré par une association", "Jardin", "Potager"], 
          "title":"oui"
          },
         "bicycle_parking" :
         {"name": "Parking à vélos",
-         "category" : ["prive", "libre acces", "Missing"]
+         "category" : ["Privé", "Libre accès"]
          },
         "education" : 
         {"name": "Education",
-         "category" : ["kindergarten", "school", "university", "college"],
+         "category" : ["Crèche", "Ecole primaire ou secondaire", "Enseignement supérieur hors université", "Université"],
          "title":"oui"
          },
         "fire_hydrant" :
         {"name": "Equipement de lutte contre incendie",
-         "category" : ["utiliser_que_par_les_pompiers", "utiliser_par_tous"]
+         "category" : ["Utiliser que par les pompiers", "Utiliser par tous"]
          },
         "historic" :
         {"name": "Historique",
-         "category" : ["memorial", "nature", "man-made_waterbody", "place_of_worship",
-         "monument", "tomb", "castle", "ruins", "Autre", "archaeological_site", "building", 
-         "industrial ", "military", "vehicle", "scientific"],
+         "category" : ["Autre", "Bâtiment", "Château", "Fontaine ou aménagement de cours d'eau", "Industriel", "Lieu de culte", "Monument",
+         "Mémorial", "Naturel", "Patrimoine militaire", "Patrimoine scientifique", "Ruines", "Site archéologique", "Tombe", "Transport"],
          "title":"oui"
          },
         "hosting" :
         {"name": "Hébergement touristique",
-         "category" : ["hotel", "guest_house", "outdoor", "Autre"]
+         "category" : ["Autre", "Espaces extérieur", "Hôtel", "Maison d'hôte"]
          },
         "internet_access" :
         {"name": "Point d'accès internet",
-         "category" : ["wlan", "terminal", "Autre", "wired", "service_provider"] 
+         "category" : ["Autre", "Connection par câble", "Fournisseur de service", "Wifi"] 
          },
         "parking" :
         {"name": "Parking",
-         "category" : ["Missing", "ouvrage", "enclos_en_surface"] 
+         "category" : ["Ouvrage", "Enclos en surface"] 
          },
         "sports" : 
         {"name": "Sportif",
-         "category" : ["sports_centre", "pitch", "horse_riding", "swimming_pool",
-         "golf_course", "fitness_station", "recreation_ground", "track",
-         "stadium", "grass", "Autre"],
+         "category" : ["Aire de jeux", "Autre", "Centre d'équitation", "Complexe sportif",
+         "Equipement de fitness ou de gymnastique", "Piscine", "Piste d'athlétisme", "Stade",
+         "Terrain de golf", "Terrain de sport"],
+         "title":"oui"
+         },
+        "drinking_water":
+        {"name": "Eau Potable",
+         "category" : ["Gratuit", "Payant"]
+         },
+        "toilets":
+        {"name": "Toilettes",
+         "category" : ["Gratuit", "Payant"]
+         },
+        "taxi":
+        {"name": "Taxi",
+         },
+        "fuel":
+        {"name": "Station électrique",
+         },
+        "power_supports":
+        {"name": "Support du courant",
+         "category" : [ "Pylône électrique", "Poteau électrique"]
+         },
+        "restaurant":
+        {"name": "Restaurants",
+         "category" : ["Bar ou Pub", "Café", "Foire alimentaire", "Glacier", "Restaurant", "Restaurant fast food"],
+         "title":"oui"
+         },
+        "public_service":
+        {"name": "Services Publiques",
+         "category" : ["Organisme gouvernemental", "Service de conseil", "Mairie ou Hôtel de ville", "Diplomatique", "Autre"],
          "title":"oui"
          }
+         
+         
             }
 
 total_number = {} #list the number of subcategory for each type (charging_station, healthcare etc.)

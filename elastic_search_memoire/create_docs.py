@@ -43,7 +43,13 @@ def doc_generator():
                         "hosting":[],
                         "internet_acess":[],
                         "parking":[],
-                        "sports":[]
+                        "sports":[],
+                        "restaurant":[],
+                        "public_service":[],
+                        "fuel":[],
+                        "taxi":[],
+                        "power_supports":[],
+                        "toilets":[]
               }}             
 
 helpers.bulk(es, doc_generator())

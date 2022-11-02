@@ -2,13 +2,8 @@ from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 import pandas as pd
 
-
 es = Elasticsearch("http://localhost:9200", request_timeout= 30)
 print(es.info().body)
-
-# es.indices.put_settings(index="area1", body={
-#     "index.mapping.total_fields.limit": 200000
-# })
 
 def doc_generator():
   df_iter = df.iterrows()
@@ -22,12 +17,13 @@ def doc_generator():
                     "lang": "painless",
                     "params": {
                         "drinking_water": [{
-                            "gps_coordinates": ""
+                            "gps_coordinates": line["geometry"],
+                            "category": line["Type_détaillé"]
                         }]}                  
               } }   
 
 
-for i in [ i * 500 for i in range(60)]:  
-  df = pd.read_csv("healthcare_tosave.csv")[i:i+500]
+for i in [ i * 500 for i in range(24)]:  
+  df = pd.read_csv("drinking_water_cleaned.csv")[i:i+500]
   df.reset_index(inplace = True)
   helpers.bulk(es, doc_generator())

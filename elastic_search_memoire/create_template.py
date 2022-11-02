@@ -42,18 +42,73 @@ data = {"index_patterns": ["*area*"],
 "drinking_water":  {
     "type": "nested",
     "properties": {"gps_coordinates": 
-        {"type":"geo_point"}}
-              }, 
+        {"type":"geo_point"}},
+        "category": 
+        {"type":"keyword"}
+    }, 
 "charging_station":  {
     "type": "nested",
     "properties": {"gps_coordinates": 
-        {"type":"geo_point"}}
-              },
+        {"type":"geo_point"}},
+        "category": 
+        {"type":"keyword"}
+    },
 "restaurant":  {
     "type": "nested",
     "properties": {"gps_coordinates": 
-        {"type":"geo_point"}}
-              },
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    },
+"public_service":  {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    },
+"fuel":  {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "name_text":
+         {"type":"text"},
+         "name_keyword":
+         {"type":"keyword"}
+      }
+    },
+"taxi":  {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"}
+      }
+    },
+"toilets":  {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"}
+      }
+    },
+"power_supports":  {
+    "type": "nested",
+    "properties": {"gps_coordinates": 
+        {"type":"geo_point"},
+        "category": 
+        {"type":"keyword"}
+      }
+    },
 "aed": {
     "type": "nested",
     "properties": {"gps_coordinates": 

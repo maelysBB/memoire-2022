@@ -22,7 +22,7 @@ def doc_generator():
                         }]}                  
               } }        
 
-for i in [ i * 500 for i in range(126)]:  
+for i in [ i * 500 for i in range(597)]:  
   df = pd.read_csv("./csv_files/parking_cleaned.csv")[i:i+500]
   df.reset_index(inplace = True)
   helpers.bulk(es, doc_generator())
