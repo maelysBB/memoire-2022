@@ -22,7 +22,7 @@ def doc_generator():
                         }]}                  
               } }       
 
-for i in [ i * 500 for i in range(4)]:  
+for i in [ i * 500 for i in range(16)]:  
   df = pd.read_csv("./csv_files/internet_acess_cleaned.csv")[i:i+500]
   df.reset_index(inplace = True)
   helpers.bulk(es, doc_generator())

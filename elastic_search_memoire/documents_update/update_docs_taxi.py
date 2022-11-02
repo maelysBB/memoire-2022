@@ -13,16 +13,16 @@ def doc_generator():
                   "_index": 'area1',
                     "_id" :  line["0"],
                   "script": {
-                    "source": "ctx._source.parking.addAll(params.parking)",
+                    "source": "ctx._source.taxi.addAll(params.taxi)",
                     "lang": "painless",
                     "params": {
-                        "parking": [{
+                        "taxi": [{
                             "gps_coordinates": line["geometry"],
                             "category": line["Type_détaillé"]
                         }]}                  
-              } }        
+              } }   
 
-for i in [ i * 500 for i in range(597)]:  
-  df = pd.read_csv("./csv_files/parking_cleaned.csv")[i:i+500]
+for i in [ i * 500 for i in range(1)]:  
+  df = pd.read_csv("./csv_files/taxi_cleaned.csv")[i:i+500]
   df.reset_index(inplace = True)
   helpers.bulk(es, doc_generator())

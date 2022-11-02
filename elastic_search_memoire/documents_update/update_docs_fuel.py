@@ -13,16 +13,18 @@ def doc_generator():
                   "_index": 'area1',
                     "_id" :  line["0"],
                   "script": {
-                    "source": "ctx._source.parking.addAll(params.parking)",
+                    "source": "ctx._source.fuel.addAll(params.fuel)",
                     "lang": "painless",
                     "params": {
-                        "parking": [{
+                        "fuel": [{
                             "gps_coordinates": line["geometry"],
-                            "category": line["Type_détaillé"]
+                            "category": line["Type_détaillé"],
+                            "name_text": line["name"],
+                            "name_keyword": line["name"]
                         }]}                  
-              } }        
+              } }   
 
-for i in [ i * 500 for i in range(597)]:  
-  df = pd.read_csv("./csv_files/parking_cleaned.csv")[i:i+500]
+for i in [ i * 500 for i in range(10)]:  
+  df = pd.read_csv("./csv_files/fuel_cleaned.csv")[i:i+500]
   df.reset_index(inplace = True)
   helpers.bulk(es, doc_generator())
