@@ -25,9 +25,9 @@ item_translator = { "healthcare0" : "Hopital", "healthcare1": "Pharmacie", "heal
                     "internet_access3": "Autre", "parking0": "Ouvrage", "parking1": "Enclos en surface", "sports0": "Aire de jeux", "sports1":  "Centre d'équitation", "sports2": "Complexe sportif", "sports3": "Equipement de fitness ou de gymnastique",
                     "sports4": "Piscine", "sports5": "Piste d'athlétisme", "sports6": "Stade", "sports7": "Terrain de golf", "sports8": "Terrain de sport", "sports9": "Autre", "drinking_water0": "Gratuit", "drinking_water1":  "Payant", "toilets0": "Gratuit", "toilets1":  "Payant",
                     "taxi": "taxi", "fuel": "Station de carburant", "power_supports0": "Pylône électrique", "power_supports1": "Poteau électrique", 
-                    "restaurant0": "Bar ou Pub", "restaurant1": "Café", "restaurant2": "Foire alimentaire", "restaurant3": "Glacier", "restaurant4": "Restaurant", "restaurant5": "Restaurant fast food",
+                    "restaurant0": "Bar ou Pub", "restaurant1": "Café", "restaurant2": "Glacier", "restaurant3": "Foire alimentaire", "restaurant4": "Restaurant", "restaurant5": "Restaurant Fast Food", "restaurant6": "Restaurant Français",  "restaurant7": "Restaurant Régional",
+                    "restaurant8": "Restaurant Italien", "restaurant9": "Restaurant Japonais", "restaurant10": "Restaurant Indien",
                     "public_service0": "Mairie ou Hôtel de ville","public_service1":"Organisme gouvernemental", "public_service2": "Service de conseil", "public_service3": "Diplomatique", "public_service4": "Autre",
-                    "power_supports0": "Pylône électrique", "power_supports1": "Poteau électrique"
                     
                     }
  

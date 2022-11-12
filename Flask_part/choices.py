@@ -48,7 +48,7 @@ category = {
          },
         "allotments" :
         {"name": "Jardins familiaux",
-         "category" : ["Autre", "Géré par une association", "Jardin", "Potager"], 
+         "category" : ["Jardin", "Potager", "Géré par une association", "Autre"], 
          "title":"oui"
          },
         "bicycle_parking" :
@@ -62,21 +62,21 @@ category = {
          },
         "fire_hydrant" :
         {"name": "Equipement de lutte contre incendie",
-         "category" : ["Utiliser que par les pompiers", "Utiliser par tous"]
+         "category" : ["Utiliser par tous", "Utiliser que par les pompiers"]
          },
         "historic" :
         {"name": "Historique",
-         "category" : ["Autre", "Bâtiment", "Château", "Fontaine ou aménagement de cours d'eau", "Industriel", "Lieu de culte", "Monument",
-         "Mémorial", "Naturel", "Patrimoine militaire", "Patrimoine scientifique", "Ruines", "Site archéologique", "Tombe", "Transport"],
+         "category" : ["Bâtiment", "Château", "Fontaine ou aménagement de cours d'eau", "Industriel", "Lieu de culte", "Monument",
+         "Mémorial", "Naturel", "Patrimoine militaire", "Patrimoine scientifique", "Ruines", "Site archéologique", "Tombe", "Transport", "Autre"],
          "title":"oui"
          },
         "hosting" :
         {"name": "Hébergement touristique",
-         "category" : ["Autre", "Espaces extérieur", "Hôtel", "Maison d'hôte"]
+         "category" : ["Hôtel", "Maison d'hôte", "Espaces extérieur", "Autre"]
          },
         "internet_access" :
         {"name": "Point d'accès internet",
-         "category" : ["Autre", "Connection par câble", "Fournisseur de service", "Wifi"] 
+         "category" : ["Wifi", "Connection par câble", "Fournisseur de service", "Autre"] 
          },
         "parking" :
         {"name": "Parking",
@@ -84,9 +84,9 @@ category = {
          },
         "sports" : 
         {"name": "Sportif",
-         "category" : ["Aire de jeux", "Autre", "Centre d'équitation", "Complexe sportif",
+         "category" : ["Aire de jeux", "Centre d'équitation", "Complexe sportif",
          "Equipement de fitness ou de gymnastique", "Piscine", "Piste d'athlétisme", "Stade",
-         "Terrain de golf", "Terrain de sport"],
+         "Terrain de golf", "Terrain de sport", "Autre"],
          "title":"oui"
          },
         "drinking_water":
@@ -109,12 +109,13 @@ category = {
          },
         "restaurant":
         {"name": "Restaurants",
-         "category" : ["Bar ou Pub", "Café", "Foire alimentaire", "Glacier", "Restaurant", "Restaurant fast food"],
+         "category" : ["Bar ou Pub", "Café", "Glacier", "Foire alimentaire", "Restaurant", "Restaurant Fast Food", 
+         "Restaurant Français", "Restaurant Régional", "Restaurant Italien", "Restaurant Japonais", "Restaurant Indien"],
          "title":"oui"
          },
         "public_service":
         {"name": "Services Publiques",
-         "category" : ["Organisme gouvernemental", "Service de conseil", "Mairie ou Hôtel de ville", "Diplomatique", "Autre"],
+         "category" : ["Mairie ou Hôtel de ville", "Organisme gouvernemental", "Service de conseil", "Diplomatique", "Autre"],
          "title":"oui"
          }
          
