@@ -15,9 +15,8 @@ def add(df, data):
   df['loc']=df.index
   df['lat'] = data['lat'].iloc[df['loc']]
   df['lon'] = data['lon'].iloc[df['loc']]
-  df['banque'] = data['banque'].iloc[df['loc']]
-  df['santé'] = data['santé'].iloc[df['loc']]
-  df['cimetière'] = data['cimetière'].iloc[df['loc']]
-  df['cinéma'] = data['cinéma'].iloc[df['loc']]
-  df['jardin'] = data['jardin'].iloc[df['loc']]
+  for i in ['shop_craft_office','restaurant','cinema','library','playground','sports','allotments',
+  'historic','hosting','education','healthcare','bank','public_service','toilets','drinking_water',
+  'aed','fire_hydrant','carpool','parking','bicycle_parking','charging_station','taxi','fuel']:
+    df[i]=data[i].iloc[df['loc']]
   return df
