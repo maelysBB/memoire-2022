@@ -1,9 +1,17 @@
-<<<<<<< HEAD
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 import pandas as pd
+from run import distance
+import configparser
 
-es = Elasticsearch("http://localhost:9200", request_timeout= 30)
+config = configparser.ConfigParser()
+config.read('example.ini')
+
+es = Elasticsearch(
+    cloud_id=config['ELASTIC']['cloud_id'],
+    http_auth=(config['ELASTIC']['user'], config['ELASTIC']['password'])
+)
+
 print(es.info().body)
 
 def doc_generator():
@@ -11,7 +19,7 @@ def doc_generator():
   for index, line in df_iter:
         yield {
                   "_op_type": "update",
-                  "_index": 'area1',
+                  "_index": f'area{distance}',
                     "_id" :  line["0"],
                   "script": {
                     "source": "ctx._source.bicycle_parking.addAll(params.bicycle_parking)",
@@ -23,36 +31,5 @@ def doc_generator():
                         }]}                  
               } }   
 
-for i in [ i * 500 for i in range(152)]:  
-  df = pd.read_csv("./csv_files/bicycle_parking_cleaned.csv")[i:i+500]
-  df.reset_index(inplace = True)
-=======
-from elasticsearch import Elasticsearch
-from elasticsearch import helpers
-import pandas as pd
-
-es = Elasticsearch("http://localhost:9200", request_timeout= 30)
-print(es.info().body)
-
-def doc_generator():
-  df_iter = df.iterrows()
-  for index, line in df_iter:
-        yield {
-                  "_op_type": "update",
-                  "_index": 'area1',
-                    "_id" :  line["0"],
-                  "script": {
-                    "source": "ctx._source.bicycle_parking.addAll(params.bicycle_parking)",
-                    "lang": "painless",
-                    "params": {
-                        "bicycle_parking": [{
-                            "gps_coordinates": line["geometry"],
-                            "category": line["Type_détaillé"]
-                        }]}                  
-              } }   
-
-for i in [ i * 500 for i in range(152)]:  
-  df = pd.read_csv("./csv_files/bicycle_parking_cleaned.csv")[i:i+500]
-  df.reset_index(inplace = True)
->>>>>>> 0b279288ee2d23b1c32f80b5cc39a9eb7c1e5103
-  helpers.bulk(es, doc_generator())
+df = pd.read_csv(f"./csv_files/{distance}/bicycle_parking_cleaned_{distance}.csv")
+helpers.bulk(es, doc_generator(), chunk_size=250, request_timeout= 120, raise_on_error=False)

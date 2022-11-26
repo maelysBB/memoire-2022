@@ -1,21 +1,24 @@
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
 import pandas as pd
+from run import distance
+import configparser
 
+config = configparser.ConfigParser()
+config.read('example.ini')
 
-es = Elasticsearch("http://localhost:9200", request_timeout= 30)
+es = Elasticsearch(
+    cloud_id=config['ELASTIC']['cloud_id'],
+    http_auth=(config['ELASTIC']['user'], config['ELASTIC']['password'])
+)
 print(es.info().body)
-
-# es.indices.put_settings(index="area1", body={
-#     "index.mapping.total_fields.limit": 200000
-# })
 
 def doc_generator():
   df_iter = df.iterrows()
   for index, line in df_iter:
         yield {
                   "_op_type": "update",
-                  "_index": 'area1',
+                  "_index": f'area{distance}',
                   "_id" :  line["0"],
                   "script": {
                     "source": "ctx._source.restaurant.addAll(params.restaurant)",
@@ -24,12 +27,12 @@ def doc_generator():
                         "restaurant": [{
                             "gps_coordinates": line["geometry"],
                             "name_text": line["name"],
-                            "name_keyword": line["name"]
+                            "name_keyword": line["name"],
+                            "category": line["Type_détaillé"]
                         }]}                  
               } }   
 
 
-for i in [ i * 500 for i in range(60)]:  
-  df = pd.read_csv("healthcare_tosave.csv")[i:i+500]
-  df.reset_index(inplace = True)
-  helpers.bulk(es, doc_generator())
+
+df = pd.read_csv(f"./csv_files/{distance}/restaurant_cleaned_{distance}.csv")
+helpers.bulk(es, doc_generator(), chunk_size=250, request_timeout= 120, raise_on_error=False)
