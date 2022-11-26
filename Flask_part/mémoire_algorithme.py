@@ -17,6 +17,6 @@ def add(df, data):
   df['lon'] = data['lon'].iloc[df['loc']]
   for i in ['shop_craft_office','restaurant','cinema','library','playground','sports','allotments',
   'historic','hosting','education','healthcare','bank','public_service','toilets','drinking_water',
-  'aed','fire_hydrant','carpool','parking','bicycle_parking','charging_station','taxi','fuel']:
+  'aed','fire_hydrant','carpool','parking','charging_station','taxi','fuel']:
     df[i]=data[i].iloc[df['loc']]
   return df

@@ -19,14 +19,16 @@ category = {
          "title":"oui",
          "groupe":"Lieux de divertissement et tourisme"
          },
-         "library" : 
+        "library" : 
         {"name": "Bibliothèque",
          "category" : ["Bibliothèque", "Médiathèque", "Dépôt à livres"],
-         "title":"oui"         },
+         "title":"oui"         
+        },
+
         "playground" :
-        {"name": "Terrain de jeu",
-        "title":"oui"}
-        , 
+        {"name": "Terrain de jeu"
+        }, 
+
         "sports" : 
         {"name": "Aménagement sportif",
          "category" : ["Aire de jeux", "Centre d'équitation", "Complexe sportif",
@@ -96,10 +98,6 @@ category = {
         "parking" :
         {"name": "Parking",
          "category" : ["Ouvrage", "Enclos en surface"]
-         },
-        "bicycle_parking" :
-        {"name": "Parking à vélos",
-         "category" : ["Privé", "Libre accès"]
          },
         "charging_station" :
         {"name": "Bornes de chargement"

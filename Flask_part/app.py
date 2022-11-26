@@ -120,7 +120,7 @@ def predict_app2():
     <b>%s</b> banque(s), <b>%s</b> service(s) public(s), <b>%s</b> toilette(s),<br> 
     <b>%s</b> station(s) d'eau potable, <b>%s</b> défibrillateur(s),<br> 
     <b>%s</b> équipement(s) anti-incendie, <b>%s</b> station(s) de covoiturage, <br>
-    <b>%s</b> parking(s), <b>%s</b> parking(s) vélo, <b>%s</b> borne(s) de chargement, <br>
+    <b>%s</b> parking(s), <b>%s</b> borne(s) de chargement, <br>
     <b>%s</b> station(s) de taxi et <b>%s</b> station(s) essence
     """ % (top['shop_craft_office'].iloc[i], top['cinema'].iloc[i], top['restaurant'].iloc[i],
     top['library'].iloc[i], top['playground'].iloc[i], top['sports'].iloc[i],top['allotments'].iloc[i], 
@@ -128,7 +128,7 @@ def predict_app2():
     top['healthcare'].iloc[i], top['bank'].iloc[i], top['public_service'].iloc[i],
     top['toilets'].iloc[i], top['drinking_water'].iloc[i], top['aed'].iloc[i],
     top['fire_hydrant'].iloc[i], top['carpool'].iloc[i], top['parking'].iloc[i],
-    top['bicycle_parking'].iloc[i], top['charging_station'].iloc[i], top['taxi'].iloc[i],
+    top['charging_station'].iloc[i], top['taxi'].iloc[i],
     top['fuel'].iloc[i])
             folium.Circle(location=[top['lat'].iloc[i], top['lon'].iloc[i]],
                     radius=1000,
@@ -146,7 +146,7 @@ def predict_app2():
     <b>%s</b> banque(s), <b>%s</b> service(s) public(s), <b>%s</b> toilette(s),<br> 
     <b>%s</b> station(s) d'eau potable, <b>%s</b> défibrillateur(s),<br> 
     <b>%s</b> équipement(s) anti-incendie, <b>%s</b> station(s) de covoiturage, <br>
-    <b>%s</b> parking(s), <b>%s</b> parking(s) vélo, <b>%s</b> borne(s) de chargement, <br>
+    <b>%s</b> parking(s), <b>%s</b> borne(s) de chargement, <br>
     <b>%s</b> station(s) de taxi et <b>%s</b> station(s) essence
     """ % (top['shop_craft_office'].iloc[i], top['cinema'].iloc[i], top['restaurant'].iloc[i],
     top['library'].iloc[i], top['playground'].iloc[i], top['sports'].iloc[i],top['allotments'].iloc[i], 
@@ -154,7 +154,7 @@ def predict_app2():
     top['healthcare'].iloc[i], top['bank'].iloc[i], top['public_service'].iloc[i],
     top['toilets'].iloc[i], top['drinking_water'].iloc[i], top['aed'].iloc[i],
     top['fire_hydrant'].iloc[i], top['carpool'].iloc[i], top['parking'].iloc[i],
-    top['bicycle_parking'].iloc[i], top['charging_station'].iloc[i], top['taxi'].iloc[i],
+    top['charging_station'].iloc[i], top['taxi'].iloc[i],
     top['fuel'].iloc[i])
             folium.Circle(location=[top['lat'].iloc[i], top['lon'].iloc[i]],
                     radius=1000,
