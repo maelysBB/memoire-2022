@@ -109,14 +109,6 @@ li {
     margin-left: 10px
 }
 
-#Go-back
-{
-    position: absolute;
-    bottom: 20px;
-    z-index: 1000;
-    margin-left: 10px
-}
-
 #menu
 {
     position: absolute;
@@ -140,8 +132,6 @@ li {
     width: 100%;
     min-height:50em;
 
-
-
   }
   
   .card {
@@ -150,3 +140,20 @@ li {
     width: 100%;
 
   }
+
+#form-wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+form {
+	width: 90%;
+	max-width: 500px;
+    #form-title {
+		margin-top: 0;
+		font-weight: 400;
+		text-align: center;
+	}
+
+
