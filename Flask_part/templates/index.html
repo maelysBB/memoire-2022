@@ -4,9 +4,6 @@
 
 <div id="set_map"></div>
 
-<!-- <div id = "iframe_"> 
-    <iframe src = {{ url_for('set_map') }} id = "folium_map" onload="myFunction()"></iframe>
-</div> -->
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
@@ -14,13 +11,29 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
+<input id="input" type="range" min="0" value="1" max="3" step="1">
+<div id="output"></div>
+
+<script language="JavaScript">
+var values = [500,1000,5000,10000];
+var input = document.getElementById('input'),
+   output = document.getElementById('output');
+input.oninput = function(){
+    output.innerHTML = values[this.value];
+};
+input.oninput();
+
+
+</script>
+
   <div class="offcanvas-body">
     <form id = "myform"  onsubmit="return false">
       {% for key,value in list_of_choices.items() %}
         <div class = "section_category" id = "{{key}}">
+          <strong>{{value.groupe}}</strong>
             {% if value.category %}
               <div class = "section_header">
-                <input class="form-check-input" type="checkbox" id="champ1"onClick="toggle(this, '{{key}}')" /> <label></label><strong>{{value.name}}</strong> (tous types) 
+                <input class="form-check-input" type="checkbox" id="champ1"onClick="toggle(this, '{{key}}')" /> <label>{{value.name}} (tous types) </label>
                 <button id ="but-{{loop.index0}}" type="button" class="collapsible" onClick = "collapse(this)"><img srcset="https://img.icons8.com/external-others-inmotus-design/134/external-Down-virtual-keyboard-others-inmotus-design-5.png 2x" alt="Down" loading="lazy" onload="this.setAttribute('lazy', 'loaded')" onerror="this.setAttribute('lazy', 'error')" style="width: 18px; height: 18px;" lazy="loaded">       </button> 
               </div>
               <div class = "content {{loop.index0}}">
@@ -41,11 +54,24 @@
               </div>
               {% endif %}
             </div>  
+ 
+            {% elif value.title %} 
+            <div class = "section_header">
+              <input class="form-check-input" type="checkbox" id="champ1"onClick="toggle(this, '{{key}}')" /> <label>{{value.name}}</label>
+              <button id ="but-{{loop.index0}}" type="button" class="collapsible" onClick = "collapse(this)"><img srcset="https://img.icons8.com/external-others-inmotus-design/134/external-Down-virtual-keyboard-others-inmotus-design-5.png 2x" alt="Down" loading="lazy" onload="this.setAttribute('lazy', 'loaded')" onerror="this.setAttribute('lazy', 'error')" style="width: 18px; height: 18px;" lazy="loaded">       </button> 
+            </div>
+            <div class = "content {{loop.index0}}">
+              <span>Un nom vous revient ? </span>
+              <input type="text" class="form-control" aria-label="Default" name = "name_{{key}}" aria-describedby="inputGroup-sizing-default">
+            </div>
+
+
             {%else%}
             <div class = "section_header">
               <input class="form-check-input real" type="checkbox" name = "user_demand" value="{{key}}">
-              <strong>{{value.name}}</strong>
-            </div>    
+              {{value.name}}
+            </div>   
+
             {% endif %}
         </div>    
       {% endfor %}
@@ -64,35 +90,6 @@
 </a>
 </div>
 
-
-
-<!-- <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> -->
-
-<!-- <script>
-  var coll = document.getElementsByClassName("collapsible");
-  var i;
-  
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = document.getElementsByClassName("content");
-      console.log(content)
-      for (i = 0; i < content.length; i++) {
-        if (content[i].style.display === "block") {
-          content[i].style.display = "none";
-        } else {
-          content[i].style.display = "block";
-      }}
-    });
-  }
-</script> -->
 
 <script language="JavaScript">
   function toggle(source, key) {
@@ -119,6 +116,7 @@
     for (var text of textInputs) {  
       array_inputs[text.name] = text.value;  
   }
+    var distance = values[document.getElementById('input').value];
 
 
   if (window.myLayer)
@@ -126,10 +124,9 @@
 
   window.myLayer = L.geoJSON().addTo(map);
 
-  var data =  JSON.stringify({"checkboxes": array_checkboxes, "inputs": array_inputs})
+  var data =  JSON.stringify({"checkboxes": array_checkboxes, "inputs": array_inputs, "distance":distance})
   const process_demand = "{{ url_for('update_map_api') }}"
   console.log(data)
-    
     
     fetch(process_demand,  {method: "POST", body:  data,  headers: {
     'Content-Type': 'application/json'
@@ -141,8 +138,8 @@
           data = JSON.parse(data);
           window.myLayer.addData(data);  
 
-          var message="Test"
-          window.myLayer.bindPopup(message)
+          // var message='test'
+          // window.myLayer.bindPopup(message)
 
         } catch (e) { alert("Aucun résultat trouvé"); }
   

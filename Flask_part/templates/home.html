@@ -1,52 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-<!-- <div id="map"></div> -->
+<div id="map"></div>
 
-  <body>
-      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <img src="{{ url_for('static', filename='style/île-de-France.jpg') }}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Trouvez votre localisation idéale en choisissant la <b>présence</b> de certains lieux </h3>
-              <h5><i>"Je cherche une localisation avec une crèche, une boulangerie et un cinéma UGC"</i></h5>
-              <div>
-                <a class="btn btn-dark filter" id= "but" href="/app1" role="button">
-                  Je teste
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-item" data-bs-interval="2000">
-            <img src="{{ url_for('static', filename='style/île-de-France.jpg') }}" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Trouvez votre localisation idéale en choisissant le <b>nombre</b> de certains lieux </h3>
-              <h5><i>"Je cherche une localisation avec deux cinémas, un jardin et une banque"</i></h5>
-              <a class="btn btn-dark filter" id= "but" href="/app2" role="button">
-                Je teste
-              </a>
-            </div>
-          </div>
-          </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-<!-- 
-      <div class='parent'>
+       <div class='parent'>
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Méthode 1</h5>
@@ -64,7 +21,7 @@
               <br><a href="/app2" class="btn btn-dark" role="button">Testez !</a>
           </div>
       </div>
-    </div> -->
+    </div>
 
      <!--Script Bootstrap--> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
