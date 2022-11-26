@@ -1,12 +1,20 @@
 from elasticsearch import Elasticsearch
 from elasticsearch import helpers
-
+import configparser
 import pandas as pd
+from run import distance
 
-df = pd.read_csv("./csv_files/areas.csv")
+config = configparser.ConfigParser()
+config.read('example.ini')
 
 
-es = Elasticsearch("http://localhost:9200")
+df = pd.read_csv(f"./csv_files/{distance}/areas_{distance}.csv")
+
+
+es = Elasticsearch(
+    cloud_id=config['ELASTIC']['cloud_id'],
+    http_auth=(config['ELASTIC']['user'], config['ELASTIC']['password'])
+)
 print(es.info().body)
 
 
@@ -14,7 +22,7 @@ def doc_generator():
   df_iter = df.iterrows()
   for index, line in df_iter:
         yield {
-                  "_index": 'area1',
+                  "_index": f'area{distance}',
                     "_id" : f"{index}",
                   "_source": { 
                         "coordinates": 

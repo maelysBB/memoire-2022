@@ -1,7 +1,15 @@
 import requests
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, helpers
+import configparser
+from run import distance
 
-es = Elasticsearch("http://localhost:9200")
+config = configparser.ConfigParser()
+config.read('example.ini')
+
+es = Elasticsearch(
+    cloud_id=config['ELASTIC']['cloud_id'],
+    http_auth=(config['ELASTIC']['user'], config['ELASTIC']['password'])
+)
 
 data = {"index_patterns": ["*area*"], 
 "template": {
@@ -42,16 +50,18 @@ data = {"index_patterns": ["*area*"],
 "drinking_water":  {
     "type": "nested",
     "properties": {"gps_coordinates": 
-        {"type":"geo_point"}},
+        {"type":"geo_point"},
         "category": 
         {"type":"keyword"}
-    }, 
+    }
+}, 
 "charging_station":  {
     "type": "nested",
     "properties": {"gps_coordinates": 
-        {"type":"geo_point"}},
+        {"type":"geo_point"},
         "category": 
         {"type":"keyword"}
+    }
     },
 "restaurant":  {
     "type": "nested",
@@ -179,8 +189,6 @@ data = {"index_patterns": ["*area*"],
     "type": "nested",
     "properties": {"gps_coordinates": 
         {"type":"geo_point"},
-        "category": 
-        {"type":"keyword"},
         "name_text":
          {"type":"text"},
          "name_keyword":
@@ -303,10 +311,9 @@ data = {"index_patterns": ["*area*"],
 "priority": 500
 }
 
-url = "http://localhost:9200/_index_template/template_area"
+url = "https://b236dd3dc6bb4948883eec9e0dc644d0.us-central1.gcp.cloud.es.io/_index_template/template_area"
 
- 
-response = requests.post(url, json=data)
- 
+response = requests.post(url, auth=(config['ELASTIC']['user'], config['ELASTIC']['password']), json=data)
+
 print("Status Code", response.status_code)
 print("JSON Response ", response.json())
