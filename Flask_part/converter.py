@@ -8,6 +8,8 @@ import requests
 import re
 from choices import category
 import configparser
+import random
+
 
 config = configparser.ConfigParser()
 config.read('example.ini')
@@ -92,13 +94,26 @@ def test(url, result, free_input):
   print(data["query"])
   
 
+  # sampling with replacement
+  # k = number of items to select
+
   response  = requests.get(url, auth=(config['ELASTIC']['user'], config['ELASTIC']['password']), json = data)
+   
+  polygon = response.json()["hits"]["hits"]  
+  polygon = random.choices(polygon, k=100)
+
   
-  polygon = response.json()["hits"]["hits"]
+  detail =  [{element["_id"]: element["_source"] } for element in polygon]
+  # detail =  [element["_id"] for element in polygon]
+  
+  retrieve_centroid = [shapely.wkt.loads(element["_source"]["centroid"]) for element in polygon] #retrieve only the polygon coordinates of each doc. We apply wkt loads to convert to proper format
+  geo_serie_c = gpd.GeoSeries(retrieve_centroid) #transform the list of polygons to a geoSerie
+  geo_serie_c.crs = "epsg:4326"
+
   retrieve_polygons = [shapely.wkt.loads(element["_source"]["polygon"]) for element in polygon] #retrieve only the polygon coordinates of each doc. We apply wkt loads to convert to proper format
   geo_serie = gpd.GeoSeries(retrieve_polygons) #transform the list of polygons to a geoSerie
   geo_serie.crs = "epsg:4326"
-  return geo_serie
-  # return response
+  return geo_serie_c, polygon
+  # return responsey
   # return data
 
