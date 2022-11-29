@@ -8,8 +8,7 @@ import requests
 from converter import test, compare
 from choices import category, name_cat
 from mémoire_algorithme import difference, add
-
-
+import json
 
 
 app = Flask(__name__)
@@ -64,10 +63,20 @@ def update_map_api():
     if len(inputs) > 0 :
         for key, value in inputs.items():
             free_field[key.replace("name_","")] = value
-    result = test(url, checkboxes, free_field).to_json()
+    result =  test(url, checkboxes, free_field)
+        # result =  test(url, checkboxes, free_field)[1].to_json()
+
+    # result_0 = {"test": {result[0]}}.to_json()
+    # from jsonmerge import merge
+    result = {1: result[0].to_json(), 2: result[1]}
+    # json.loads(result)
+    # result1 = .to_json()
+
     if len(checkboxes)==0:
         return folium_map._repr_html_()
-    return jsonify(result)
+    # return jsonify(result[0].to_json()), result[1]
+    return result
+
 
 
 # *** Deuxième application
