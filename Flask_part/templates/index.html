@@ -182,7 +182,7 @@ function getRandomSubarray(arr, size) {
                 
                 onEachFeature: function (feature, layer) {
                   
-                layer.bindPopup('<h5 style= "text-align:center; font-size: 16px; margin-left:80px;font-weight:550">Ce lieu répond à vos critères</h5><div id="gmap" style="width: 100%"><iframe margin-top: 20px width="400px" height="200px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q='+counts[feature.id]["centroid"].split("(")[1].split(" ")[1]+","+counts[feature.id]["centroid"].split("(")[1].split(" ")[0]+'&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe></div><div id="foo" class = "popup"</div>')
+                layer.bindPopup('<h5 style= "text-align:center; font-size: 14px; margin-left:80px;font-weight:550; margin-bottom:10px">La zone autour de ce lieu répond à vos critères!</h5><div id="gmap" style="width: 100%"><iframe margin-top: 20px width="400px" height="200px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q='+counts[feature.id]["centroid"].split("(")[1].split(" ")[1]+","+counts[feature.id]["centroid"].split("(")[1].split(" ")[0]+'&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe></div><div id="foo" class = "popup"</div>')
               .on('popupopen', function (e) {
                 Plotly.newPlot('foo', [{
                 x: counts[feature.id]["item"].slice(2,),
