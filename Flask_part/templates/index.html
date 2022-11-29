@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Home Page{% endblock %}
 {% block content %}
-
 <div id="set_map"></div>
-
+<div id="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
@@ -90,6 +89,8 @@ input.oninput();
 </a>
 </div>
 
+<script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+
 
 <script language="JavaScript">
   function toggle(source, key) {
@@ -98,10 +99,20 @@ input.oninput();
     checkboxes[i].checked = source.checked;
   }
 } 
-
 </script>
 
 <script language="JavaScript">
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
+    while (i-- > min) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(min);
+}
+
   function getValues() {
     var array_checkboxes = []
     var array_inputs = {}
@@ -117,7 +128,7 @@ input.oninput();
       array_inputs[text.name] = text.value;  
   }
     var distance = values[document.getElementById('input').value];
-
+  
 
   if (window.myLayer)
     { window.myLayer.clearLayers()}
@@ -127,22 +138,79 @@ input.oninput();
   var data =  JSON.stringify({"checkboxes": array_checkboxes, "inputs": array_inputs, "distance":distance})
   const process_demand = "{{ url_for('update_map_api') }}"
   console.log(data)
-    
+  document.getElementById('lds-spinner').style.display = 'block';
+
     fetch(process_demand,  {method: "POST", body:  data,  headers: {
     'Content-Type': 'application/json'
   } 
   })
     .then(response => response.json())
     .then(data => {
-         try { 
-          data = JSON.parse(data);
-          window.myLayer.addData(data);  
+        //  try { 
+          // data = JSON.parse(data);
+            locations = JSON.parse(data[1])
+            const detail = data[2]
+            document.getElementById('lds-spinner').style.display = 'none';
+            console.log(locations)
+            console.log(detail)
 
-          // var message='test'
-          // window.myLayer.bindPopup(message)
+            const arr = ['centroid', 'coordinates', 'polygon'];
+            counts = {}
+            for (key in detail) {
+                element = detail[key];
+                counts[key] = {"id": detail[key]["_id"]};
+                counts[key]["item"] = [];
+                counts[key]["num"] = [];
+                counts[key]["centroid"] = element["_source"]["centroid"];
+                counts[key]["coordinates"] = element["_source"]["coordinates"];
 
-        } catch (e) { alert("Aucun résultat trouvé"); }
-  
+                for (item in element["_source"]) {
+                    if (!arr.includes(item)) {
+                        counts[key]["item"].push(item)
+                            counts[key]["num"].push(element["_source"][item].length)
+                    };       
+                }}
+
+            
+
+              var layerGroup =  L.geoJSON(locations, {
+                pointToLayer: function(feature, latlng) {
+              return new L.Circle(latlng, {
+                radius: distance,
+                color: 'Blue'
+              });},
+                
+                onEachFeature: function (feature, layer) {
+                  
+                layer.bindPopup('<h5 style= "text-align:center; font-size: 16px; margin-left:80px;font-weight:550">Ce lieu répond à vos critères</h5><div id="gmap" style="width: 100%"><iframe margin-top: 20px width="400px" height="200px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q='+counts[feature.id]["centroid"].split("(")[1].split(" ")[1]+","+counts[feature.id]["centroid"].split("(")[1].split(" ")[0]+'&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe></div><div id="foo" class = "popup"</div>')
+              .on('popupopen', function (e) {
+                Plotly.newPlot('foo', [{
+                x: counts[feature.id]["item"].slice(2,),
+                y : counts[feature.id]["num"].slice(2,),
+                // name: 'SF Zoo',
+                type: 'bar',
+                }],
+                  {
+                  autosize: true,
+                  width: 400,
+                  height: 300,
+                  margin : {
+                    l: 0,
+                    r: 0
+                  },
+                  font : {
+                    family:"Courier New, monospace",
+                    size:7.5,
+                }
+          
+            });});
+                  }
+                }).addTo(map);
+
+            document.getElementById('lds-spinner').style.display = 'none';
+        // } catch (e) { alert("Aucun résultat trouvé"); }
+        // document.getElementById('lds-spinner').style.display = 'none';
+
         // window.myLayer.addData(data);       
     })
   
@@ -150,23 +218,13 @@ input.oninput();
 
   }
 </script>
-<!-- <script>
-    function myFunction() {
-      var e = document.getElementById("map").contentWindow.document.getElementsByTagName("span")[0];
-        e.innerHTML = "fuck"
-        e.style.color = "white";
-    }
-</script> -->
-
 
 <script type="text/javascript">
   var map = L.map('set_map').setView([48.9, 2.3360300], 10);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
- 
-  </script>
+  }).addTo(map); 
+</script>
 
 {% endblock %}
 
