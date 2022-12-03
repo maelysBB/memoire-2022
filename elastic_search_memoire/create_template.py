@@ -311,7 +311,7 @@ data = {"index_patterns": ["*area*"],
 "priority": 500
 }
 
-url = "https://b236dd3dc6bb4948883eec9e0dc644d0.us-central1.gcp.cloud.es.io/_index_template/template_area"
+url = "https://my-deployment-8a262e.es.us-central1.gcp.cloud.es.io/_index_template/template_area"
 
 response = requests.post(url, auth=(config['ELASTIC']['user'], config['ELASTIC']['password']), json=data)
 

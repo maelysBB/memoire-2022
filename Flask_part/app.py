@@ -58,7 +58,7 @@ def update_map_api():
     checkboxes = data["checkboxes"]
     inputs =  data["inputs"]
     distance= data['distance']
-    url = f"https://b236dd3dc6bb4948883eec9e0dc644d0.us-central1.gcp.cloud.es.io/area{distance}/_search"
+    url = f"https://my-deployment-8a262e.es.us-central1.gcp.cloud.es.io/area{distance}/_search"
     free_field = {}
     if len(inputs) > 0 :
         for key, value in inputs.items():
