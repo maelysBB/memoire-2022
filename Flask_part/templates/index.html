@@ -10,21 +10,8 @@
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
-<input id="input" type="range" min="0" value="1" max="3" step="1" style="width:80% ; position:block; margin-left: auto; margin-right: auto">
-<div id="output" style="width:80% ; position:block; margin-left: auto; margin-right: auto"></div>
-
-<script language="JavaScript">
-var values = [500,1000,5000,10000];
-var input = document.getElementById('input'),
-   output = document.getElementById('output');
-input.oninput = function(){
-    output.innerHTML = values[this.value];
-};
-input.oninput();
-
-
-</script>
-
+<input id="input" type="range" min="0" value="1" max="3" step="1" onClick = changeSlider() style="width:80% ; position:block; margin-left: auto; margin-right: auto">
+<div id="output" style="width:80% ; position:block; margin-left: 35%; margin-right: auto; font-weight: 500">1km</div>
   <div class="offcanvas-body">
     <form id = "myform"  onsubmit="return false">
       {% for key,value in list_of_choices.items() %}
@@ -32,7 +19,7 @@ input.oninput();
           <strong>{{value.groupe}}</strong>
             {% if value.category %}
               <div class = "section_header">
-                <input class="form-check-input" type="checkbox" id="champ1"onClick="toggle(this, '{{key}}')" /> <label>{{value.name}} (tous types) </label>
+                <input class="form-check-input" type="checkbox" id="champ1" onClick="toggle(this, '{{key}}')" /> <label>{{value.name}} (tous types) </label>
                 <button id ="but-{{loop.index0}}" type="button" class="collapsible" onClick = "collapse(this)"><img srcset="https://img.icons8.com/external-others-inmotus-design/134/external-Down-virtual-keyboard-others-inmotus-design-5.png 2x" alt="Down" loading="lazy" onload="this.setAttribute('lazy', 'loaded')" onerror="this.setAttribute('lazy', 'error')" style="width: 18px; height: 18px;" lazy="loaded">       </button> 
               </div>
               <div class = "content {{loop.index0}}">
@@ -69,8 +56,7 @@ input.oninput();
             <div class = "section_header">
               <input class="form-check-input real" type="checkbox" name = "user_demand" value="{{key}}">
               {{value.name}}
-            </div>   
-
+            </div>
             {% endif %}
         </div>    
       {% endfor %}
@@ -79,6 +65,19 @@ input.oninput();
     </form>
   </div>
 </div>
+<div id="before-chart"></div><div id = "chart"></div></div>
+<select name="cars" id="options_graph">
+  <option value="education">Education</option>
+  <option value="healthcare">Santé</option>
+  <option value="shop_craft_office">Commerces</option>
+  <option value="restaurant">Restaurants</option>
+  <option value="bank">Banques</option>
+  <option value="public_service">Services Publics</option>
+  <option value="library">Bibliothèques</option>
+  <option value="aire de Jeux">Aires de Jeux</option>
+  <option value="sport">Sport</option>
+  <option value="cimetery">Cimetières</option>
+</select>
 <div>
   <a class="btn btn-dark filter" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
     Filtrer
@@ -86,34 +85,22 @@ input.oninput();
 
   <a class="btn btn-dark filter" id="menu_right" href="/" role="button">
     Retour au menu principal
-</a>
+  </a>
 </div>
-
-<script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
-
 
 <script language="JavaScript">
   function toggle(source, key) {
   checkboxes = document.getElementsByClassName("form-check-input "+key);
   for(var i=0, n=checkboxes.length;i<n;i++) {
     checkboxes[i].checked = source.checked;
-  }
-} 
+    }
+  } 
 </script>
 
 <script language="JavaScript">
-function getRandomSubarray(arr, size) {
-    var shuffled = arr.slice(0), i = arr.length, min = i - size, temp, index;
-    while (i-- > min) {
-        index = Math.floor((i + 1) * Math.random());
-        temp = shuffled[index];
-        shuffled[index] = shuffled[i];
-        shuffled[i] = temp;
-    }
-    return shuffled.slice(min);
-}
 
   function getValues() {
+
     var array_checkboxes = []
     var array_inputs = {}
 
@@ -126,35 +113,33 @@ function getRandomSubarray(arr, size) {
     var textInputs = document.querySelectorAll('input[type="text"]');  
     for (var text of textInputs) {  
       array_inputs[text.name] = text.value;  
-  }
+    }
     var distance = values[document.getElementById('input').value];
-  
 
-  if (window.myLayer)
-    { window.myLayer.clearLayers()}
-
-  window.myLayer = L.geoJSON().addTo(map);
+    try {
+      window.layerGroup.clearLayers();
+    } catch (err) {
+    }
 
   var data =  JSON.stringify({"checkboxes": array_checkboxes, "inputs": array_inputs, "distance":distance})
   const process_demand = "{{ url_for('update_map_api') }}"
-  console.log(data)
   document.getElementById('lds-spinner').style.display = 'block';
 
-    fetch(process_demand,  {method: "POST", body:  data,  headers: {
+  fetch(process_demand,  {method: "POST", body:  data,  headers: {
     'Content-Type': 'application/json'
   } 
   })
     .then(response => response.json())
     .then(data => {
-        //  try { 
-          // data = JSON.parse(data);
+      
+         try { 
             locations = JSON.parse(data[1])
             const detail = data[2]
+            const all_data = data
             document.getElementById('lds-spinner').style.display = 'none';
-            console.log(locations)
-            console.log(detail)
 
-            const arr = ['centroid', 'coordinates', 'polygon'];
+            const arr = ['centroid', 'coordinates', 'polygon', 'hosting', 'power_supports', 'bicycle_parking', 'carpool'];
+
             counts = {}
             for (key in detail) {
                 element = detail[key];
@@ -171,51 +156,122 @@ function getRandomSubarray(arr, size) {
                     };       
                 }}
 
-            
-
-              var layerGroup =  L.geoJSON(locations, {
-                pointToLayer: function(feature, latlng) {
-              return new L.Circle(latlng, {
-                radius: distance,
-                color: 'Blue'
-              });},
+                window.layerGroup =  L.geoJSON(locations, {
+                    pointToLayer: function(feature, latlng) {
+                  return new L.Circle(latlng, {
+                            radius: distance,
+                            color: 'Blue'
+                          });},
                 
                 onEachFeature: function (feature, layer) {
+                  var d1 = document.getElementById('chart');
+                  var beforeChart = document.getElementById('before-chart');
+
+                  var grid = document.getElementById('grid');
+                  layer.bindPopup('<div id="foo" class = "popup"</div>') //Création du contenu des pop up
+                  //Ajout du plot dans la pop up
                   
-                layer.bindPopup('<h5 style= "text-align:center; font-size: 14px; margin-left:80px;font-weight:550; margin-bottom:10px">La zone autour de ce lieu répond à vos critères!</h5><div id="gmap" style="width: 100%"><iframe margin-top: 20px width="400px" height="200px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q='+counts[feature.id]["centroid"].split("(")[1].split(" ")[1]+","+counts[feature.id]["centroid"].split("(")[1].split(" ")[0]+'&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe></div><div id="foo" class = "popup"</div>')
-              .on('popupopen', function (e) {
-                Plotly.newPlot('foo', [{
-                x: counts[feature.id]["item"].slice(2,),
-                y : counts[feature.id]["num"].slice(2,),
-                // name: 'SF Zoo',
-                type: 'bar',
-                }],
-                  {
-                  autosize: true,
-                  width: 400,
-                  height: 300,
-                  margin : {
-                    l: 0,
-                    r: 0
-                  },
-                  font : {
-                    family:"Courier New, monospace",
-                    size:7.5,
-                }
-          
-            });});
-                  }
-                }).addTo(map);
+                  layer.on('click', function (e) {             
+                    Plotly.newPlot('chart', [{
+                      // x: counts[feature.id]["item"].slice(2,),
+                      x: ["Banques", "Cimetières", "Bornes de chargement", "Cinémas", "Pistes cyclables", "Points d'eau", "Education", "Lutte incendie", "Stations services", "Santé", "Culture", "Accès internet", "Bibliothèques", "Parkings", "Aires de jeux", "Services Publics","Recyclage", "Restaurant", "Commerces", "Sports", "Taxi", "Toilettes"],
+                      y : counts[feature.id]["num"].slice(2,),
+                      type: 'bar',
+                    }],
+                      {
+                        autosize: true,
+                        width: 400,
+                        height: 300,
+                        margin : {
+                          l: 0,
+                          r: 0
+                        },
+                      font : {
+                        family:"Courier New, monospace",
+                        size: 7.5
+                        }
+                    }
+                    );
+                    layer.setPopupContent(d1)
+                    d1.style.display = "block"
+                    d1.insertAdjacentHTML('beforebegin', '<h5 style= "text-align:center; font-size: 14px; margin-left:80px;font-weight:550; margin-bottom:10px">La zone autour de ce lieu répond à vos critères!</h5>');
+                    d1.insertAdjacentHTML('afterend', `<div id = "table"></div>`);
+                    d1.insertAdjacentHTML('beforebegin', '<div id="gmap" style="width: 100%"><iframe margin-top: 20px width="400px" height="200px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=en&amp;q='+counts[feature.id]["centroid"].split("(")[1].split(" ")[1]+","+counts[feature.id]["centroid"].split("(")[1].split(" ")[0]+'&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a></iframe></div>');            
 
-            document.getElementById('lds-spinner').style.display = 'none';
-        // } catch (e) { alert("Aucun résultat trouvé"); }
-        // document.getElementById('lds-spinner').style.display = 'none';
+                    
 
-        // window.myLayer.addData(data);       
-    })
-  
-    
+                    var options_g = document.getElementById("options_graph")
+                    options_g.style.display = "block"
+                    d1.append(options_g);
 
+                    options_g.insertAdjacentHTML('beforebegin', '<div id="myGrid" style="height: 200px; width:500px;" class="ag-theme-alpine"></div>');            
+
+
+                    let dict_item = {}
+                    counts[feature.id]["item"].slice(2,).forEach(function(item) {
+                          list_per_cat = []
+                          row = data[2][feature.id]["_source"][item].forEach(element => 
+                            list_per_cat.push({"Nom": element["name_text"], "Type de lieu": element["category"]}));
+                            ;
+                            console.log(list_per_cat.length)
+
+                          list_by_item = {}
+                          if (list_per_cat.length > 0)
+                            {dict_item[item] = list_per_cat}
+                        });
+                      console.log(dict_item)
+            
+                    const columnDefs = [
+                      { field: "Nom" },
+                      { field: "Type de lieu" }
+                    ];
+
+                    // specify the data
+                    const rowData = dict_item[options_g.value]
+                    console.log(rowData)
+                   
+                    // let the grid know which columns and what data to use
+                    let gridOptions = {
+                      columnDefs: columnDefs,
+                      rowData: rowData
+                    };
+
+
+                      options_g.addEventListener('click', function (){
+                        gridOptions.api.setRowData(dict_item[options_g.value])
+                        console.log(options_g.value)
+                        console.log
+
+                      })
+                    // setup the grid after the page has finished loading
+                    var link = document.getElementById('detail');
+                    table =  document.getElementById('table');
+               
+
+                    const gridDiv = document.querySelector('#myGrid');
+                    new agGrid.Grid(gridDiv, gridOptions)
+                    table.append(gridDiv);
+                    table.style.display= "display: block"
+
+                    layer.getPopup().on('remove', function (e) {
+                      beforeChart.append(d1);
+                      beforeChart.append(options_g)
+                      beforeChart.append(table)
+                      d1.style =  "display: none"
+                      options_g.style = "display: none"
+                      table.style = "display: none"
+                    }
+                    )
+                  });
+                    }
+                  }).addTo(map);
+      
+          document.getElementById('lds-spinner').style.display = 'none';
+        } catch (e) 
+        { 
+          alert("Aucun résultat trouvé"); }
+          document.getElementById('lds-spinner').style.display = 'none';
+      })
   }
 </script>
 
