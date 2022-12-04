@@ -273,3 +273,7 @@ li {
 div.ag-theme-alpine div.ag-row {
   font-size: 11px !important;
 }
+
+#gmap {
+  margin-top: 20px
+}
