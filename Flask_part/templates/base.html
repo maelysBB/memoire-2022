@@ -5,10 +5,15 @@
     <link rel= "stylesheet" type= "text/css" href= "{{url_for('static',filename='style/main.css')}}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <link rel="shortcut icon" type= "image/png" href="{{url_for('static',filename='style/favicon.jpg')}}"/>
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     
     <script src="{{ url_for('static', filename='style/js/script.js') }}"></script>
+
+    <title>Ag-Grid Basic Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+
 
     <title>{% block title %}{% endblock %} </title>
   </head>
@@ -24,12 +29,12 @@
                   <li class="nav-item">
                     <a class="nav-link" href="/">Trouvez votre lieu idéal ! </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/presentation">Qui sommes-nous?</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/fonctionne">Comment ça fonctionne ?</a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
