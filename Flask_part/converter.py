@@ -60,7 +60,7 @@ def test(url, result, free_input):
     else : 
       user_demand[key] = {"number": len(compare(result, key))}
       
-  data = {"size": 500}
+  data = {"size": 200}
   data["query"] = {"bool": {"must": []}}
   
 
